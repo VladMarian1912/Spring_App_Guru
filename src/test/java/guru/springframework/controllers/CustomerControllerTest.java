@@ -152,7 +152,16 @@ public class CustomerControllerTest {
         assertEquals(zipCode, boundCustomer.getShippingAddress().getZipCode());
         assertEquals(email, boundCustomer.getEmail());
         assertEquals(phoneNumber, boundCustomer.getPhoneNumber());
+    }
 
+    @Test
+    public void testDelete() throws Exception{
+        Integer id = 1;
 
+        mockMvc.perform(get("/customer/delete/1"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/customer/list"));
+
+        verify(customerService, times(1)).delete(id);
     }
 }
