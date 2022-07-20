@@ -1,5 +1,8 @@
 package guru.springframework.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -8,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class Cart extends AbstractDomainClass{
 
     @OneToOne
@@ -15,22 +20,6 @@ public class Cart extends AbstractDomainClass{
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart", orphanRemoval = true)
     private List<CartDetail> cartDetails = new ArrayList<>();
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public List<CartDetail> getCartDetails() {
-        return cartDetails;
-    }
-
-    public void setCartDetails(List<CartDetail> cartDetails) {
-        this.cartDetails = cartDetails;
-    }
 
     public void addCartDetail(CartDetail cartDetail){
         cartDetails.add(cartDetail);
