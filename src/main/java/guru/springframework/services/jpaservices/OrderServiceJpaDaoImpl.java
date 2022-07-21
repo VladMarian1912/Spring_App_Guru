@@ -15,7 +15,7 @@ public class OrderServiceJpaDaoImpl extends AbstractJpaDaoService implements Ord
     public List<Order> listAll() {
         EntityManager em = entityManagerFactory.createEntityManager();
 
-        return em.createQuery("from Order", Order.class).getResultList();
+        return em.createQuery("select o from Order o", Order.class).getResultList();
     }
 
     @Override

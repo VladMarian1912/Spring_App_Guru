@@ -16,7 +16,7 @@ public class ProductServiceJpaDaoImpl extends AbstractJpaDaoService implements P
     public List<Product> listAll() {
         EntityManager em = entityManagerFactory.createEntityManager();
 
-        return em.createQuery("from Product", Product.class).getResultList();
+        return em.createQuery("select p from Product p", Product.class).getResultList();
     }
 
     @Override

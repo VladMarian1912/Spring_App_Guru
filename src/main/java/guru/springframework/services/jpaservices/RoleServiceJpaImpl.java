@@ -16,7 +16,7 @@ public class RoleServiceJpaImpl extends AbstractJpaDaoService implements RoleSer
     public List<?> listAll() {
         EntityManager em = entityManagerFactory.createEntityManager();
 
-        return em.createQuery("from Role", Role.class).getResultList();
+        return em.createQuery("select r from Role r", Role.class).getResultList();
     }
 
     @Override

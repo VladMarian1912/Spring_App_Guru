@@ -24,7 +24,8 @@ public class CustomerServiceJPADaoImpl extends AbstractJpaDaoService implements 
     @Override
     public List<Customer> listAll() {
         EntityManager em = entityManagerFactory.createEntityManager();
-        List<Customer> customers = em.createQuery("from Customer", Customer.class).getResultList();
+        List<Customer> customers = em.createQuery("select c from Customer c", Customer.class).getResultList();
+        em.close();
 
         return customers;
     }
