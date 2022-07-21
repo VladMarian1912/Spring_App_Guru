@@ -41,9 +41,9 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         loadProducts();
         loadUsersAndCustomers();
         loadCarts();
-        loadOrderHistory();
-        loadRoles();
-        assignUsersToDefaultRole();
+        //loadOrderHistory();
+        //loadRoles();
+        //assignUsersToDefaultRole();
 
     }
 
@@ -90,11 +90,17 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         List<Product> products = (List<Product>) productService.listAll();
 
         users.forEach(user -> {
+            // create a new cart for user
             user.setCart(new Cart());
+            user.getCart().setUser(user);
+
+            // add a cartdetail in cart
             CartDetail cartDetail = new CartDetail();
             cartDetail.setProduct(products.get(0));
             cartDetail.setQuantity(2);
             user.getCart().addCartDetail(cartDetail);
+
+            // update user's data
             userService.saveOrUpdate(user);
         });
     }
@@ -114,6 +120,8 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         customer1.getBillingAddress().setZipCode("33101");
         customer1.setEmail("micheal@burnnotice.com");
         customer1.setPhoneNumber("305.333.0101");
+
+        customer1.setUser(user1);
         user1.setCustomer(customer1);
         userService.saveOrUpdate(user1);
 
@@ -131,6 +139,8 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         customer2.getBillingAddress().setZipCode("33101");
         customer2.setEmail("fiona@burnnotice.com");
         customer2.setPhoneNumber("305.323.0233");
+
+        customer2.setUser(user2);
         user2.setCustomer(customer2);
         userService.saveOrUpdate(user2);
 
@@ -148,6 +158,7 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         customer3.setEmail("sam@burnnotice.com");
         customer3.setPhoneNumber("305.426.9832");
 
+        customer3.setUser(user3);
         user3.setCustomer(customer3);
         userService.saveOrUpdate(user3);
     }

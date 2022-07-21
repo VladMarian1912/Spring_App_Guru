@@ -24,6 +24,8 @@ public class Customer extends AbstractDomainClass {
     @Embedded
     private Address shippingAddress;
 
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+//    initial, dar nu merge
+//    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToOne(cascade = {CascadeType.ALL})
     private User user;
 }

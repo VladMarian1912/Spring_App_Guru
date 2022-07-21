@@ -2,6 +2,8 @@ package guru.springframework.domain.security;
 
 import guru.springframework.domain.AbstractDomainClass;
 import guru.springframework.domain.User;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinTable;
@@ -10,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class Role extends AbstractDomainClass {
 
     private String role;
@@ -19,22 +23,6 @@ public class Role extends AbstractDomainClass {
     // ~ defaults to @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "role_id"),
     //     inverseJoinColumns = @joinColumn(name = "user_id"))
     private List<User> users = new ArrayList<>();
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
 
     public void addUser(User user){
         if(!this.users.contains(user)){

@@ -47,7 +47,7 @@ public class UserServiceJpaDaoImpl extends AbstractJpaDaoService implements User
         User saveduser = em.merge(domainObject);
         em.getTransaction().commit();
 
-        return saveduser;
+        return domainObject;
     }
 
     @Override

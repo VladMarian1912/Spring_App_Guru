@@ -1,9 +1,14 @@
 package guru.springframework.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @MappedSuperclass
+@Getter
+@Setter
 public class AbstractDomainClass implements DomainObject {
 
     @Id
@@ -24,22 +29,6 @@ public class AbstractDomainClass implements DomainObject {
     @Override
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
-
-    public Date getDateCreated() {
-        return dateCreated;
-    }
-
-    public Date getLastUpdated() {
-        return lastUpdated;
     }
 
     @PreUpdate
