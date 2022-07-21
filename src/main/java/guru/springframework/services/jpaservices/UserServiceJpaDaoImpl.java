@@ -24,7 +24,7 @@ public class UserServiceJpaDaoImpl extends AbstractJpaDaoService implements User
     public List<?> listAll() {
         EntityManager em = entityManagerFactory.createEntityManager();
 
-        return em.createQuery("from USERS", User.class).getResultList();
+        return em.createQuery("select u from USERS u", User.class).getResultList();
     }
 
     @Override
