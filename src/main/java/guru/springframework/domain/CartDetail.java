@@ -15,7 +15,7 @@ public class CartDetail extends AbstractDomainClass {
     @ManyToOne
     private Cart cart;
 
-    @OneToOne
+    @ManyToOne
     private Product product;
 
     private Integer quantity;

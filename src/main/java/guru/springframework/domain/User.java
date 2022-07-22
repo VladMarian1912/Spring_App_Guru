@@ -29,8 +29,9 @@ public class User extends AbstractDomainClass  {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Cart cart;
 
-    @ManyToMany
-    @JoinTable
+    @ManyToMany(cascade = {CascadeType.REFRESH})
+    @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "role_id"))
     // ~ defaults to @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "user_id"),
     //     inverseJoinColumns = @joinColumn(name = "role_id"))
     private List<Role> roles = new ArrayList<>();

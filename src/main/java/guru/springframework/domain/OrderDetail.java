@@ -15,7 +15,7 @@ public class OrderDetail extends AbstractDomainClass {
     @ManyToOne
     private Order order;
 
-    @OneToOne
+    @ManyToOne
     private Product product;
 
     private Integer quantity;

@@ -3,10 +3,8 @@ package guru.springframework.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -28,4 +26,15 @@ public class Customer extends AbstractDomainClass {
 //    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @OneToOne(cascade = {CascadeType.ALL})
     private User user;
+
+    @OneToMany(cascade = {CascadeType.ALL})
+    private List<Order> orderList;
+
+    public void addOrder(Order order) {
+        orderList.add(order);
+    }
+
+    public void removeOrder(Order order) {
+        orderList.remove(order);
+    }
 }
